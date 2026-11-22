@@ -1,0 +1,16 @@
+# 签名私钥和证书材料 —— 绝不能进仓库
+ios_dist.key
+ios_dist.csr
+*.p12
+*.p8
+*.cer
+*.mobileprovision
+make_csr.sh
+dist_ios/
+
+# 手动操作记录（含账号信息）
+手动操作清单.md
+
+# 本地/系统
+.DS_Store
+*.log
