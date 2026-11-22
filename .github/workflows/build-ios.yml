@@ -18,7 +18,16 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select -s $(ls -d /Applications/Xcode*.app | tail -1)
+        run: |
+          for v in 16.4 16.3 16.2 16.1 16.0; do
+            if [ -d "/Applications/Xcode_${v}.app" ]; then
+              sudo xcode-select -s "/Applications/Xcode_${v}.app"
+              echo "Using Xcode $v"
+              exit 0
+            fi
+          done
+          echo "No Xcode 16 found, using default"
+          ls -d /Applications/Xcode*.app
 
       - name: Install XcodeGen
         run: brew install xcodegen
