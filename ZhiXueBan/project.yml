@@ -32,7 +32,7 @@ targets:
     sources:
       - ZhiXueBan
     resources:
-      - ZhiXueBan/Assets.xcassets
+      - Assets.xcassets
     settings:
       base:
         PRODUCT_NAME: ZhiXueBan
