@@ -39,3 +39,21 @@ targets:
       path: ZhiXueBan/Info.plist
       properties:
         CFBundleDisplayName: 智学伴
+        CFBundleIconName: AppIcon
+        MinimumOSVersion: "14.0"
+        UILaunchScreen:
+          UIColorName: ""
+          BackgroundColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
