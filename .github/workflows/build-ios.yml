@@ -36,6 +36,16 @@ jobs:
         working-directory: ZhiXueBan
         run: xcodegen generate
 
+      - name: DIAG1 project structure
+        working-directory: ZhiXueBan
+        run: |
+          echo "=== appiconset files on disk ==="
+          ls -1 Assets.xcassets/AppIcon.appiconset/ 2>&1 | head -30
+          echo "=== pbxproj asset references ==="
+          grep -n -iE "xcassets|assetcatalog|actool|AppIcon|\.car" ZhiXueBan.xcodeproj/project.pbxproj 2>&1 | head -60
+          echo "=== PBXResourcesBuildPhase ==="
+          awk '/Begin PBXResourcesBuildPhase/,/End PBXResourcesBuildPhase/' ZhiXueBan.xcodeproj/project.pbxproj 2>&1 | head -40
+
       - name: Force Info.plist keys (xcodegen drops complex keys)
         working-directory: ZhiXueBan
         run: |
@@ -151,6 +161,16 @@ jobs:
             -archivePath "$RUNNER_TEMP/ZhiXueBan.xcarchive" \
             -exportPath "$RUNNER_TEMP/export" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
+
+      - name: DIAG2 exported IPA
+        run: |
+          IPA=$(find "$RUNNER_TEMP/export" -name "*.ipa" -type f | head -1)
+          echo "IPA=$IPA"
+          echo "=== files in IPA ==="
+          unzip -l "$IPA" | grep -iE "Info.plist|\.car|\.png|Assets" | head -40
+          echo "=== Info.plist keys in IPA ==="
+          unzip -p "$IPA" Payload/ZhiXueBan.app/Info.plist > /tmp/ipa_info.plist
+          plutil -p /tmp/ipa_info.plist | grep -iE "Icon|Launch|Orient|MinimumOS|CFBundleIcons" | head -40
 
       - name: Upload to App Store Connect
         env:
