@@ -38,7 +38,8 @@ jobs:
           security create-keychain -p "$KEYCHAIN_PWD" "$SECURITY_PATH"
           security set-keychain-settings -lut 21600 "$SECURITY_PATH"
           security unlock-keychain -p "$KEYCHAIN_PWD" "$SECURITY_PATH"
-          echo "$CERT_P12" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          printf '%s' "$CERT_P12" | base64 -D > "$RUNNER_TEMP/cert.p12"
+          echo "p12 size: $(wc -c < "$RUNNER_TEMP/cert.p12") bytes"
           security import "$RUNNER_TEMP/cert.p12" -k "$SECURITY_PATH" -P "$CERT_PWD" \
             -T /usr/bin/codesign -T /usr/bin/security
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PWD" "$SECURITY_PATH"
