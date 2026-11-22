@@ -1,8 +1,0 @@
-name: Runner Test Mac
-on:
-  workflow_dispatch:
-jobs:
-  t:
-    runs-on: macos-latest
-    steps:
-      - run: echo "mac ok"
