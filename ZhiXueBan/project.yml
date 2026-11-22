@@ -39,4 +39,3 @@ targets:
       path: ZhiXueBan/Info.plist
       properties:
         CFBundleDisplayName: 智学伴
-        UILaunchStoryboardName: LaunchScreen
