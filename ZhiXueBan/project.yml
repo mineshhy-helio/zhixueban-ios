@@ -31,7 +31,6 @@ targets:
     platform: iOS
     sources:
       - ZhiXueBan
-    resources:
       - Assets.xcassets
     settings:
       base:
