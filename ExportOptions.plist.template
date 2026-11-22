@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  导出配置模板。上传到 GitHub Secrets 前，把 TEAM_ID 和 PROFILE_NAME 替换成你自己的。
+  用法见 README.md「GitHub Secrets 准备」一节。
+-->
+<plist version="1.0">
+<dict>
+	<key>method</key><string>app-store</string>
+	<key>teamID</key><string>TEAM_ID</string>
+	<key>uploadSymbols</key><true/>
+	<key>uploadBitcode</key><false/>
+	<key>compileBitcode</key><false/>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.zhixueban.app</key>
+		<string>PROFILE_NAME</string>
+	</dict>
+</dict>
+</plist>
