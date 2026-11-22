@@ -12,6 +12,14 @@
 			<key>Alpha</key><real>1</real>
 		</dict>
 	</dict>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
 	<key>CFBundleDevelopmentRegion</key><string>zh_CN</string>
 	<key>CFBundleDisplayName</key><string>智学伴</string>
 	<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
