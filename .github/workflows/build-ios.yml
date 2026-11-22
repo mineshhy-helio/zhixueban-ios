@@ -36,6 +36,34 @@ jobs:
         working-directory: ZhiXueBan
         run: xcodegen generate
 
+      - name: Force Info.plist keys (xcodegen drops complex keys)
+        working-directory: ZhiXueBan
+        run: |
+          PLIST="ZhiXueBan/Info.plist"
+          echo "=== Info.plist path: $PLIST ==="
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIconName AppIcon" "$PLIST" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleIconName string AppIcon" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 14.0" "$PLIST" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :MinimumOSVersion string 14.0" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Delete :UILaunchScreen" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen dict" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen:BackgroundColor dict" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen:BackgroundColor:Red real 1" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen:BackgroundColor:Green real 1" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen:BackgroundColor:Blue real 1" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UILaunchScreen:BackgroundColor:Alpha real 1" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:1 string UIInterfaceOrientationLandscapeLeft" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:2 string UIInterfaceOrientationLandscapeRight" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations~ipad" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations~ipad array" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations~ipad:0 string UIInterfaceOrientationPortrait" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations~ipad:1 string UIInterfaceOrientationPortraitUpsideDown" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations~ipad:2 string UIInterfaceOrientationLandscapeLeft" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations~ipad:3 string UIInterfaceOrientationLandscapeRight" "$PLIST"
+          echo "=== Final Info.plist ==="
+          /usr/libexec/PlistBuddy -c "Print" "$PLIST" | grep -E "CFBundleIconName|MinimumOSVersion|UILaunchScreen|UISupportedInterface" | head -20
+
       # 签名材料：把 p12 证书和描述文件用 base64 存成 GitHub Secrets
       - name: Import signing certificate
         env:
