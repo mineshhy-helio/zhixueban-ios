@@ -29,13 +29,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key><false/>
 	<key>UIStatusBarStyle</key><string>UIStatusBarStyleDefault</string>
 	<!-- 站点是 HTTPS，仅对音频 CDN 等http资源放宽；生产上架前建议全站 HTTPS 后移除 -->
