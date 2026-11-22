@@ -33,7 +33,7 @@ targets:
       - ZhiXueBan
     settings:
       base:
-        PRODUCT_NAME: 智学伴
+        PRODUCT_NAME: ZhiXueBan
         PRODUCT_BUNDLE_IDENTIFIER: com.zhixueban.app
     info:
       path: ZhiXueBan/Info.plist
